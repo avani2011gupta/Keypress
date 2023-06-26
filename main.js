@@ -1,8 +1,6 @@
 canvas = document.getElementById('myCanvas');
 ctx = canvas.getContext('2d');
 
-window.addEventListener("keydown", my_keydown);
-
 img_width = 300;
 img_height = 100;
 
@@ -13,14 +11,16 @@ img_y = 100;
 
 function add() {
 	img_imgTag = new Image(); //defining a variable with a new image
-	img_imgTag.onload = uploadimg; // setting a function, onloading this variable
+	img_imgTag.onload = uploading; // setting a function, onloading this variable
 	img_imgTag.src = img_image;   // load image
 }
 
-function uploadimg() {
+function uploading() {
 
 	ctx.drawImage(img_imgTag, img_x, img_y, img_width, img_height);
 }
+
+window.addEventListener("keydown", my_keydown);
 
 //Write a code to grab the key-pressed event
 
@@ -34,7 +34,26 @@ function my_keydown(e)
 		alphabetkey();
 		document.getElementById("d1").innerHTML="You pressed Alphabet Key";
 		console.log("Alphabet Key");
-		} else {
+		} 
+		else if(keyPressed >= 48 && keyPressed<=57)
+		{
+			numberkey();
+			document.getElementById("d1").innerHTML = "You Pressed Number Key";
+			console.log("Number Key");
+		}
+		else if(keyPressed >=37 && keyPressed <=40)
+		{
+			arrowkey();
+			document.getElementById("d1").innerHTML = "You Pressed Arrow Key";
+			console.log("Arrow Key");
+		}
+		else if ((keyPressed == 17) || (keyPressed == 18 || keyPressed==27))
+		{
+			specialkey();
+			document.getElementById("d1").innerHTML = "You Pressed Special Key";
+			console.log("Special Key");
+		}
+		else {
 		otherkey();
 		document.getElementById("d1").innerHTML="You pressed symbol or other key";
 	}
